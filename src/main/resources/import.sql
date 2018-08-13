@@ -1,0 +1,2 @@
+INSERT INTO clientes (nombre,apellido,email,create_at) values ('Alonso', 'Romero','alonsoromero@spring.com','2018-08-06');
+INSERT INTO clientes (nombre,apellido,email,create_at) values ('Manuel', 'Romero','lunaromero@spring.com','2018-08-06');
