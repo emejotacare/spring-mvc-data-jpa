@@ -25,4 +25,15 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		return em.createQuery("from Cliente").getResultList();
 	}
 	
+	/* Insertar nuevo cliente */
+	@Override
+	@Transactional
+	public void save(Cliente cliente) {
+		/*
+		 * persist --> Almacena el objeto entidad en el contexto de persistencia y BD
+		 * haciendo el insert en la tabla
+		 */
+		em.persist(cliente);
+	}
+	
 }
