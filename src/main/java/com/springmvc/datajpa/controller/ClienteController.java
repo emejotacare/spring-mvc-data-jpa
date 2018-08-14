@@ -2,9 +2,12 @@ package com.springmvc.datajpa.controller;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,9 +25,9 @@ public class ClienteController {
 	/*
 	 * LISTAR LOS CLIENTES: Importamos la clase Model para pasar los datos a la
 	 * vista
+	 *
+	 * method = RequestMethod.GET es opcional cuando es get
 	 */
-	
-	/* method = RequestMethod.GET es opcional cuando es get */
 	@RequestMapping(value = "/listar", method = RequestMethod.GET)
 	public String listarClientes(Model model) {
 		model.addAttribute("titulo", "Listado de clientes");
@@ -53,11 +56,24 @@ public class ClienteController {
 	
 	/*
 	 * Después de mostrar el formulario del método formInsertCliente, el siguiente
-	 * paso es enviar los datos y procesarlos. (/form --> url)
+	 * paso es enviar los datos y procesarlos.
+	 * 
+	 * /form --> url del formulario
+	 * 
+	 * @Valid --> Validamos los atributos del objeto cliente
+	 * 
+	 * BindingResult --> Evalua si el resultado contiene errores
 	 * 
 	 */
 	@PostMapping("/form")
-	public String insertarCliente(Cliente c) {
+	public String insertarCliente(@Valid Cliente c, BindingResult result, Model model) {
+		
+		/* Si el formulario contiene errores, redirigimos a la vista del formulario */
+		if (result.hasErrors()) {
+			model.addAttribute("titulo", "Listado de Clientes");
+			return "form";
+		}
+		
 		clienteRepository.save(c);
 		/*
 		 * Una vez insertado el cliente en base de datos, redirige al usuario a la vista

@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * The Class Cliente.
@@ -38,18 +43,22 @@ public class Cliente implements Serializable {
 	 * The nombre.
 	 */
 	@Column(name = "nombre")
+	@NotEmpty
 	private String nombre;
 	
 	/**
 	 * The apellido.
 	 */
 	@Column(name = "apellido")
+	@NotEmpty
 	private String apellido;
 	
 	/**
 	 * The email.
 	 */
 	@Column(name = "email")
+	@NotEmpty
+	@Email
 	private String email;
 	
 	/**
@@ -57,7 +66,18 @@ public class Cliente implements Serializable {
 	 */
 	@Column(name = "create_at")
 	@Temporal(TemporalType.DATE)
+	@NotNull
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date createAt;
+	
+	/** MÉTODOS */
+	
+	/**
+	 * @PrePersist: Asignar la fecha de creación del objeto entidad antes de
+	 *              persistirlo en base de datos
+	 * 
+	 * @PrePersist public void prePersist() { createAt = new Date(); }
+	 */
 	
 	/**
 	 * Gets the id.
