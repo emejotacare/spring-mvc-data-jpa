@@ -26,7 +26,7 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 		return em.createQuery("from Cliente").getResultList();
 	}
 	
-	/* Buscar un cliente por su id */
+	/* Buscar un cliente por id */
 	@Override
 	public Cliente findById(Long id) {
 		return em.find(Cliente.class, id);
