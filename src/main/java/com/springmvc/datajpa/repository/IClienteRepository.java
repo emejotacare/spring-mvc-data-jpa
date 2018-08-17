@@ -1,21 +1,23 @@
+/**
+ * 
+ */
 package com.springmvc.datajpa.repository;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import com.springmvc.datajpa.entity.Cliente;
 
-public interface IClienteRepository {
-	
-	/* Método para devolver la lista de clientes */
-	public List<Cliente> findAll();
-	
-	/* Buscar un cliente por id */
-	public Cliente findById(Long id);
-	
-	/* Insertar-Editar nuevo cliente */
-	public void save(Cliente cliente);
-	
-	/* Eliminar un cliente pasando el id */
-	public void delete(Long id);
+/**
+ * @author María José
+ * 
+ *         CrudRepository --> Interfaz propia de Spring data que implementa los
+ *         métodos básicos para hacer un crud.
+ * 
+ *         Cliente --> Entidad
+ * 
+ *         Long --> Tipo de dato de la primary key en la clase (entidad) Cliente
+ *
+ */
+public interface IClienteRepository extends CrudRepository<Cliente, Long> {
 	
 }

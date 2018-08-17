@@ -21,21 +21,33 @@ public class ClienteServiceImpl implements IClienteService {
 	
 	/*
 	 * Método para devolver la lista de clientes
+	 * 
+	 * (List<Cliente>) --> Casting porque clienteRepository.findAll() devuelve un
+	 * Iterable.
+	 * 
+	 * 
 	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<Cliente> findAll() {
-		return clienteRepository.findAll();
+		return (List<Cliente>) clienteRepository.findAll();
 	}
 	
-	/* Buscar un cliente por id */
+	/*
+	 * Buscar un cliente por id.
+	 * 
+	 * orElse --> Devuelve el objeto entity encontrado o null si viene vacío
+	 * 
+	 */
 	@Override
+	@Transactional(readOnly = true)
 	public Cliente findById(Long id) {
-		return clienteRepository.findById(id);
+		return clienteRepository.findById(id).orElse(null);
 	}
 	
 	/* Insertar-Editar nuevo cliente */
 	@Override
+	@Transactional
 	public void save(Cliente cliente) {
 		clienteRepository.save(cliente);
 		
@@ -43,8 +55,9 @@ public class ClienteServiceImpl implements IClienteService {
 	
 	/* Eliminar un cliente pasando el id */
 	@Override
+	@Transactional
 	public void delete(Long id) {
-		clienteRepository.delete(id);
+		clienteRepository.deleteById(id);
 	}
 	
 }
