@@ -49,6 +49,7 @@
 									<th scope="col">Apellido</th>
 									<th scope="col">Email</th>
 									<th scope="col">Fecha de Creación</th>
+<<<<<<< HEAD
 									<th scope="col">Acciones</th>
 								</tr>
 							</thead>
@@ -66,6 +67,19 @@
 										<a th:href="@{/form/}+${cliente.id}" th:text="'Editar'" class="btn btn-success"></a>  
 										<a th:href="@{/clientes/}+${cliente.id}" th:text="'Eliminar'" class="btn btn-danger"></a>  
 									</td>
+=======
+								</tr>
+							</thead>
+							<!-- Filas con los datos -->
+							<tbody>
+								<!-- Por cada cliente del listado clientes -->
+								<tr th:each="cliente: ${clientes}">
+									<td scope="row" th:text="${cliente.id}"></td>
+									<td th:text="${cliente.nombre}"></td>
+									<td th:text="${cliente.apellido}"></td>
+									<td th:text="${cliente.email}"></td>
+									<td th:text="${cliente.createAt}"></td>
+>>>>>>> branch 'master' of https://github.com/emejotacare/spring-mvc-data-jpa.git
 								</tr>
 							</tbody>
 						</table>
