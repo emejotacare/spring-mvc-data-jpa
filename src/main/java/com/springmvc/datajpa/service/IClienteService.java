@@ -5,6 +5,9 @@ package com.springmvc.datajpa.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.springmvc.datajpa.entity.Cliente;
 
 /**
@@ -17,6 +20,9 @@ public interface IClienteService {
 	
 	/* Método para devolver la lista de clientes */
 	public List<Cliente> findAll();
+	
+	/* Método para devolver la lista de clientes */
+	public Page<Cliente> findAll(Pageable p);
 	
 	/* Buscar un cliente por id */
 	public Cliente findById(Long id);
